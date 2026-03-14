@@ -20,7 +20,7 @@ export default defineComponent({
     const tag = computed(() => props.level)
 
     const classes = computed(() => {
-      const base = 'tracking-wide text-white font-oswald uppercase'
+      const base = 'tracking-wider text-white font-bebas uppercase'
 
       const styles = {
         h1: 'text-5xl',

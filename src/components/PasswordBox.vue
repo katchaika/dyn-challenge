@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick } from 'vue'
+
 import DynInput from '@/components/DynInput.vue'
 import DynInputPasswordToggle from '@/components/DynInputPasswordToggle.vue'
 import DynButton from '@/components/DynButton.vue'
 import DynTitle from '@/components/DynTitle.vue'
 import { usePasswordChange, validatePassword } from '@/composables/usePasswordChange'
+import { IconMailing } from '@/components/icons'
 
 const step = ref(1)
 
@@ -17,6 +19,12 @@ const newRef = ref<typeof DynInput>()
 const confirmRef = ref<typeof DynInput>()
 
 // const test = ref('')
+
+const goToSecondStep = async () => {
+  step.value = 2
+  await nextTick()
+  currentRef.value?.focus()
+}
 
 const { changePassword, loading, error, success } = usePasswordChange()
 
@@ -47,7 +55,7 @@ function resetForm() {
     <div class="max-w-lg p-6 rounded space-y-4 bg-white/25 w-full min-w-2xl text-white">
       <div v-if="step === 1" class="">
         <DynTitle level="h2" class="mb-6">Passwort</DynTitle>
-        <DynButton @click="step = 2">Ändern</DynButton>
+        <DynButton @click="goToSecondStep">Ändern</DynButton>
       </div>
 
       <div v-if="step === 2">
@@ -102,6 +110,7 @@ function resetForm() {
           </DynInput>
         </div>
 
+        <!-- inline validation with “Change password” -->
         <div class="text-sm my-2 text-blue-twilight">
           <p class="mb-2"><b>Muss enthalten:</b></p>
           <p :class="passwordRules.length ? 'text-green-success' : 'text-blue-twilight'">
@@ -140,16 +149,22 @@ function resetForm() {
         <p v-if="error" class="text-red-500 mt-2" aria-live="polite">{{ error }}</p>
       </div>
 
-      <div v-if="step === 3" class="text-center">
-        <h2 class="text-xl font-bold mb-2">Passwort ändern</h2>
-        <p class="text-green-success flex items-center justify-center space-x-2">
-          <svg class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 0a12 12 0 1 0 12 12A12.014 12.014 0 0 0 12 0zm-1 17l-5-5 1.414-1.414L11 14.172l7.586-7.586L20 8l-9 9z"
-            />
-          </svg>
-          <span>Code versendet!</span>
-        </p>
+      <div v-if="step === 3">
+        <DynTitle level="h2" class="mb-4">Passwort ändern</DynTitle>
+        <div class="flex space-x-4">
+          <div>
+            <IconMailing class="w-18" />
+          </div>
+          <div>
+            <p class="mt-1 mb-4 tracking-wider font-oswald font-thin text-xl">Code versendet!</p>
+            <p>
+              <span class="text-white/50"
+                >Wir haben dir eine E-mail zum Zurüccksetzen deines Passwortes an
+              </span>
+              <b>Max.Mustermann@hotline.de </b><span class="text-white/50">geschickt.</span>
+            </p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
