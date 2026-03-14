@@ -22,7 +22,7 @@
         @keyup="$emit('keyup', $event)"
       />
       <label
-        class="absolute origin-top-left translate-x-4 -translate-y-3.5 leading-5 transition-transform duration-200 ease-out peer-hover:text-blue-active peer-disabled:text-gray motion-reduce:transition-none"
+        class="absolute origin-top-left translate-x-4 -translate-y-3.5 peer-placeholder-shown:translate-x-4 peer-focus:-translate-y-9 peer-focus:scale-75 peer-hover:text-blue-active peer-disabled:text-gray leading-5 transition-transform duration-200 ease-out motion-reduce:transition-none pointer-events-none bg-blue-xxx-24 px-2 pt-0.5 rounded-t"
         :class="[invalid ? 'text-red-alert' : disabled ? 'text-gray' : 'text-gray-90']"
         :for="computedId"
       >
@@ -87,8 +87,7 @@ export default defineComponent({
     },
     placeholder: {
       type: String,
-      default: '\u00A0',
-      //default: undefined,
+      default: '\u200B',
     },
     readonly: {
       type: Boolean,
@@ -179,22 +178,16 @@ input {
 }
 
 input:placeholder-shown ~ label {
-  @apply pointer-events-none cursor-text text-ellipsis whitespace-nowrap;
   max-width: 66.66%;
 }
 
-::placeholder {
+input::placeholder {
   opacity: 0;
   transition: inherit;
 }
 
 input:focus::placeholder {
   opacity: 1;
-}
-
-input:not(:placeholder-shown) ~ label,
-input:focus ~ label {
-  @apply pointer-events-none translate-x-3 -translate-y-9 scale-75 cursor-pointer rounded-t bg-blue-xxx-24 px-2 pt-0.5;
 }
 
 input:hover ~ label,

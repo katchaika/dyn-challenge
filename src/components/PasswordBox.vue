@@ -18,8 +18,6 @@ const currentRef = ref<typeof DynInput>()
 const newRef = ref<typeof DynInput>()
 const confirmRef = ref<typeof DynInput>()
 
-// const test = ref('')
-
 const goToSecondStep = async () => {
   step.value = 2
   await nextTick()
@@ -73,8 +71,6 @@ function resetForm() {
               <DynInputPasswordToggle :targetRef="currentRef" />
             </template>
           </DynInput>
-
-          <!-- <DynInput v-model="test" name="test" label="Test Input" /> -->
 
           <div class="flex-1 mt-2 flex items-center">
             <DynButton @click="console.log('Passwort vergessen')" variant="ghost"
