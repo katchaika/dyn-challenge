@@ -178,7 +178,7 @@ input {
 }
 
 input:placeholder-shown ~ label {
-  max-width: 66.66%;
+  max-width: 75%;
 }
 
 input::placeholder {

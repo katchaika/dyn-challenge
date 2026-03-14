@@ -49,8 +49,8 @@ function resetForm() {
 </script>
 
 <template>
-  <div class="flex justify-center items-center h-full">
-    <div class="max-w-lg p-6 rounded space-y-4 bg-white/25 w-full min-w-2xl text-white">
+  <div class="flex justify-center items-center h-full w-full">
+    <div class="max-w-lg p-6 rounded space-y-4 bg-white/25 w-full sm:min-w-2xl text-white">
       <div v-if="step === 1" class="">
         <DynTitle level="h2" class="mb-6">Passwort</DynTitle>
         <DynButton @click="goToSecondStep">Ändern</DynButton>
@@ -58,7 +58,7 @@ function resetForm() {
 
       <div v-if="step === 2">
         <DynTitle level="h2" class="mb-4">Passwort ändern</DynTitle>
-        <div class="flex space-x-2">
+        <div class="flex sm:space-x-2 flex-col sm:flex-row">
           <DynInput
             v-model="currentPassword"
             label="Aktuelles Passwort"
@@ -78,7 +78,7 @@ function resetForm() {
             >
           </div>
         </div>
-        <div class="flex mt-4 space-x-2">
+        <div class="flex mt-4 sm:space-x-2 flex-col sm:flex-row">
           <DynInput
             v-model="newPassword"
             label="Neues Passwort"
@@ -149,11 +149,11 @@ function resetForm() {
         <DynTitle level="h2" class="mb-4">Passwort ändern</DynTitle>
         <div class="flex space-x-4">
           <div>
-            <IconMailing class="w-18" />
+            <IconMailing class="w-16 sm:w-18" />
           </div>
           <div>
             <p class="mt-1 mb-4 tracking-wider font-oswald font-thin text-xl">Code versendet!</p>
-            <p>
+            <p class="text-sm sm:text-base">
               <span class="text-white/50"
                 >Wir haben dir eine E-mail zum Zurüccksetzen deines Passwortes an
               </span>
