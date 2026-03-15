@@ -18,6 +18,9 @@ const currentRef = ref<typeof DynInput>()
 const newRef = ref<typeof DynInput>()
 const confirmRef = ref<typeof DynInput>()
 
+const currentError = ref('')
+const confirmError = ref('')
+
 const goToSecondStep = async () => {
   step.value = 2
   await nextTick()
@@ -26,15 +29,25 @@ const goToSecondStep = async () => {
 
 const { changePassword, loading, error, success } = usePasswordChange()
 
-const passwordRules = computed(() => validatePassword(newPassword.value, confirmPassword.value))
+const passwordRules = computed(() => validatePassword(newPassword.value))
 
 const canSubmit = computed(() => {
-  return (
-    Object.values(passwordRules.value).every(Boolean) && newPassword.value === confirmPassword.value
-  )
+  return Object.values(passwordRules.value).every(Boolean)
 })
 
 function handleSubmit() {
+  if (!currentPassword.value) {
+    currentError.value = 'Bitte aktuelles Passwort eingeben'
+  }
+
+  if (newPassword.value !== confirmPassword.value) {
+    confirmError.value = 'Passwörter stimmen nicht überein'
+  }
+
+  if (!currentPassword.value || newPassword.value !== confirmPassword.value) {
+    return
+  }
+
   changePassword(currentPassword.value, newPassword.value).then(() => {
     if (success.value) step.value = 3
   })
@@ -51,7 +64,7 @@ function resetForm() {
 <template>
   <div class="flex justify-center items-center h-full w-full">
     <div class="max-w-lg p-6 rounded space-y-4 bg-white/25 w-full sm:min-w-2xl text-white">
-      <div v-if="step === 1" class="">
+      <div v-if="step === 1">
         <DynTitle level="h2" class="mb-6">Passwort</DynTitle>
         <DynButton @click="goToSecondStep">Ändern</DynButton>
       </div>
@@ -66,6 +79,8 @@ function resetForm() {
             type="password"
             ref="currentRef"
             class="flex-1"
+            :invalid="!!currentError"
+            :errorText="currentError"
           >
             <template #append>
               <DynInputPasswordToggle :targetRef="currentRef" />
@@ -78,58 +93,58 @@ function resetForm() {
             >
           </div>
         </div>
+
         <div class="flex mt-4 sm:space-x-2 flex-col sm:flex-row">
-          <DynInput
-            v-model="newPassword"
-            label="Neues Passwort"
-            name="newPassword"
-            type="password"
-            ref="newRef"
-            class="flex-1"
-          >
-            <template #append>
-              <DynInputPasswordToggle :targetRef="newRef" />
-            </template>
-          </DynInput>
+          <div class="flex-1">
+            <DynInput
+              v-model="newPassword"
+              label="Neues Passwort"
+              name="newPassword"
+              type="password"
+              ref="newRef"
+            >
+              <template #append>
+                <DynInputPasswordToggle :targetRef="newRef" />
+              </template>
+            </DynInput>
 
-          <DynInput
-            v-model="confirmPassword"
-            label="Neues Passwort bestätigen"
-            name="confirmPassword"
-            type="password"
-            ref="confirmRef"
-            class="flex-1"
-          >
-            <template #append>
-              <DynInputPasswordToggle :targetRef="confirmRef" />
-            </template>
-          </DynInput>
+            <div class="text-sm my-2 text-blue-twilight">
+              <p class="mb-2"><b>Muss enthalten:</b></p>
+              <p :class="passwordRules.length ? 'text-green-success' : 'text-blue-twilight'">
+                mindestens 12 Zeichen
+              </p>
+              <p :class="passwordRules.number ? 'text-green-success' : 'text-blue-twilight'">
+                mindestens 1 Zahl
+              </p>
+              <p :class="passwordRules.special ? 'text-green-success' : 'text-blue-twilight'">
+                mindestens 1 Sonderzeichen
+              </p>
+              <p :class="passwordRules.uppercase ? 'text-green-success' : 'text-blue-twilight'">
+                mindestens 1 Großbuchstabe
+              </p>
+              <p :class="passwordRules.lowercase ? 'text-green-success' : 'text-blue-twilight'">
+                mindestens 1 Kleinbuchstabe
+              </p>
+            </div>
+          </div>
+          <div class="flex-1">
+            <DynInput
+              v-model="confirmPassword"
+              label="Neues Passwort bestätigen"
+              name="confirmPassword"
+              type="password"
+              ref="confirmRef"
+              :invalid="!!confirmError"
+              :errorText="confirmError"
+            >
+              <template #append>
+                <DynInputPasswordToggle :targetRef="confirmRef" />
+              </template>
+            </DynInput>
+          </div>
         </div>
 
-        <!-- inline validation with “Change password” -->
-        <div class="text-sm my-2 text-blue-twilight">
-          <p class="mb-2"><b>Muss enthalten:</b></p>
-          <p :class="passwordRules.length ? 'text-green-success' : 'text-blue-twilight'">
-            mindestens 12 Zeichen
-          </p>
-          <p :class="passwordRules.number ? 'text-green-success' : 'text-blue-twilight'">
-            mindestens 1 Zahl
-          </p>
-          <p :class="passwordRules.special ? 'text-green-success' : 'text-blue-twilight'">
-            mindestens 1 Sonderzeichen
-          </p>
-          <p :class="passwordRules.uppercase ? 'text-green-success' : 'text-blue-twilight'">
-            mindestens 1 Großbuchstabe
-          </p>
-          <p :class="passwordRules.lowercase ? 'text-green-success' : 'text-blue-twilight'">
-            mindestens 1 Kleinbuchstabe
-          </p>
-          <p :class="passwordRules.confirmation ? 'text-green-success' : 'text-blue-twilight'">
-            Passwörter stimmen überein
-          </p>
-        </div>
-
-        <div class="flex justify-between items-center mt-4 space-x-2">
+        <div class="flex justify-between items-center mt-6 space-x-2">
           <DynButton @click="resetForm" variant="secondary" class="flex-1">Abbrechen</DynButton>
           <DynButton
             :disabled="!canSubmit || loading"

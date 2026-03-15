@@ -32,6 +32,9 @@
         <slot name="append" :disabled="disabled" :invalid="invalid" :readonly="readonly" />
       </span>
     </div>
+    <p v-if="invalid" class="text-red-alert text-sm mt-1">
+      {{ errorText }}
+    </p>
   </div>
 </template>
 
@@ -64,6 +67,10 @@ export default defineComponent({
     invalid: {
       type: Boolean,
       default: false,
+    },
+    errorText: {
+      type: String,
+      default: '',
     },
     label: {
       type: String,

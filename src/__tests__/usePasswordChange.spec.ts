@@ -36,42 +36,36 @@ describe('usePasswordChange', () => {
 
 describe('validatePassword', () => {
   it('validates correct password', () => {
-    const result = validatePassword('Passwordpassword!1', 'Passwordpassword!1')
+    const result = validatePassword('Passwordpassword!1')
     expect(result.length).toBe(true)
     expect(result.number).toBe(true)
     expect(result.special).toBe(true)
     expect(result.uppercase).toBe(true)
     expect(result.lowercase).toBe(true)
-    expect(result.confirmation).toBe(true)
   })
 
   it('missing numbers', () => {
-    const result = validatePassword('Passwordpassword!', '')
+    const result = validatePassword('Passwordpassword!')
     expect(result.number).toBe(false)
   })
 
   it('missing special symbol', () => {
-    const result = validatePassword('Passwordpassword1', '')
+    const result = validatePassword('Passwordpassword1')
     expect(result.special).toBe(false)
   })
 
   it('missing uppercase', () => {
-    const result = validatePassword('passwordpassword!1', '')
+    const result = validatePassword('passwordpassword!1')
     expect(result.uppercase).toBe(false)
   })
 
   it('missing lowercase', () => {
-    const result = validatePassword('PASWORDPASSWORD!1', '')
+    const result = validatePassword('PASWORDPASSWORD!1')
     expect(result.lowercase).toBe(false)
   })
 
   it('short password', () => {
-    const result = validatePassword('Password!1', '')
+    const result = validatePassword('Password!1')
     expect(result.length).toBe(false)
-  })
-
-  it('missmatch new assord and confirmation', () => {
-    const result = validatePassword('Passwordpassword!', '')
-    expect(result.confirmation).toBe(false)
   })
 })
