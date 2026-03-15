@@ -1,6 +1,6 @@
 import { it, expect } from 'vitest'
 
-import { useInputPasswordToggle } from '../composables/useInputPasswordToggle'
+import { useInputPasswordToggle } from '@/composables/useInputPasswordToggle'
 
 it('toggles password visibility', () => {
   const { isPasswordShown, onTogglePassword } = useInputPasswordToggle()

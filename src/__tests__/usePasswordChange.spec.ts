@@ -1,6 +1,6 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 
-import { usePasswordChange, validatePassword } from '../composables/usePasswordChange'
+import { usePasswordChange, validatePassword } from '@/composables/usePasswordChange'
 
 describe('usePasswordChange', () => {
   beforeEach(() => {
