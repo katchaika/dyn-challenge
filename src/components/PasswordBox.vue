@@ -36,17 +36,22 @@ const canSubmit = computed(() => {
 })
 
 function handleSubmit() {
+  currentError.value = ''
+  confirmError.value = ''
+
+  let hasError = false
+
   if (!currentPassword.value) {
     currentError.value = 'Bitte aktuelles Passwort eingeben'
+    hasError = true
   }
 
   if (newPassword.value !== confirmPassword.value) {
     confirmError.value = 'Passwörter stimmen nicht überein'
+    hasError = true
   }
 
-  if (!currentPassword.value || newPassword.value !== confirmPassword.value) {
-    return
-  }
+  if (hasError) return
 
   changePassword(currentPassword.value, newPassword.value).then(() => {
     if (success.value) step.value = 3
@@ -183,5 +188,3 @@ function resetForm() {
     </div>
   </div>
 </template>
-
-<style scoped></style>
