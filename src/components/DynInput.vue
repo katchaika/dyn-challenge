@@ -22,7 +22,7 @@
         @keyup="$emit('keyup', $event)"
       />
       <label
-        class="absolute origin-top-left translate-x-4 -translate-y-3.5 peer-placeholder-shown:translate-x-4 peer-focus:-translate-y-9 peer-focus:scale-75 peer-hover:text-blue-active peer-disabled:text-gray leading-5 transition-transform duration-200 ease-out motion-reduce:transition-none pointer-events-none bg-blue-xxx-24 px-2 pt-0.5 rounded-t"
+        class="absolute origin-top-left translate-x-4 -translate-y-3.5 peer-placeholder-shown:translate-x-4 peer-focus:-translate-y-9 peer-focus:scale-75 peer-not-placeholder-shown:-translate-y-9 peer-not-placeholder-shown:scale-75 peer-hover:text-blue-active peer-disabled:text-gray leading-5 transition-transform duration-200 ease-out motion-reduce:transition-none pointer-events-none bg-blue-xxx-24 px-2 pt-0.5 rounded-t"
         :class="[invalid ? 'text-red-alert' : disabled ? 'text-gray' : 'text-gray-90']"
         :for="computedId"
       >
@@ -185,6 +185,7 @@ input {
 }
 
 input:placeholder-shown ~ label {
+  @apply pointer-events-none cursor-text text-ellipsis whitespace-nowrap;
   max-width: 75%;
 }
 
