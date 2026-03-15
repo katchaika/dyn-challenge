@@ -1,0 +1,42 @@
+/* // Example usage:
+//
+// Button Primary:
+// <a class="bt bt-primary" href="#">Label</a>
+// <button class="bt bt-primary" type="button">Label</button>
+//
+// Button Primary (small):
+// <a class="bt bt-primary bt-small" href="#">Label</a>
+// <button class="bt bt-primary bt-small" type="button">Label</button>
+//
+// Button Secondary:
+// <a class="bt bt-secondary" href="#">Label</a>
+// <button class="bt bt-secondary" type="button">Label</button>
+//
+// Button Secondary (small):
+// <a class="bt bt-secondary bt-small" href="#">Label</a>
+// <button class="bt bt-secondary bt-small" type="button">Label</button>
+// */
+
+.bt {
+  @apply appearance-none outline-0 ring-0 focus-visible:outline-none enabled:cursor-pointer disabled:opacity-20 rounded px-2;
+}
+
+.bt-primary {
+  @apply flex h-12 items-center justify-center bg-blue-active text-center font-bebas leading-none tracking-wider text-blue-midnight active:bg-blue-light enabled:hover:bg-blue-highlight enabled:focus:bg-blue-highlight disabled:bg-gray-73 disabled:text-gray-40;
+}
+
+.bt-secondary {
+  @apply flex h-12 items-center justify-center border border-blue-active bg-transparent text-center font-bebas leading-none tracking-wider text-blue-active enabled:hover:border-blue-highlight enabled:hover:text-blue-highlight enabled:focus:border-blue-highlight enabled:focus:text-blue-highlight  disabled:border-gray-73 disabled:text-gray-40;
+}
+
+a.bt-primary {
+  @apply hover:bg-blue-highlight focus:bg-blue-highlight active:bg-blue-highlight;
+}
+
+a.bt-secondary {
+  @apply hover:border-blue-highlight hover:text-blue-highlight focus:border-blue-highlight focus:text-blue-highlight active:border-blue-highlight;
+}
+
+.bt-small {
+  @apply h-8;
+}

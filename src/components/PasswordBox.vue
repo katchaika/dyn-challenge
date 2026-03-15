@@ -68,7 +68,7 @@ function resetForm() {
     <div class="max-w-lg p-6 rounded space-y-4 bg-white/25 w-full sm:min-w-2xl text-white">
       <div v-if="step === 1">
         <DynTitle level="h2" class="mb-6">Passwort</DynTitle>
-        <DynButton @click="goToSecondStep">Ändern</DynButton>
+        <button @click="goToSecondStep" class="bt bt-primary w-20" type="button">Ändern</button>
       </div>
 
       <div v-if="step === 2">
@@ -89,7 +89,8 @@ function resetForm() {
             </template>
           </DynInput>
 
-          <div class="flex-1 mt-2 flex items-center">
+          <div class="flex-1 mt-2 flex items-center" :disabled="true">
+            <!-- my commponent -->
             <DynButton @click="console.log('Passwort vergessen')" variant="ghost"
               >Passwort vergessen</DynButton
             >
@@ -147,16 +148,16 @@ function resetForm() {
         </div>
 
         <div class="flex justify-between items-center mt-6 space-x-2">
-          <DynButton @click="resetForm" variant="secondary" class="flex-1">Abbrechen</DynButton>
-          <DynButton
+          <button @click="resetForm" class="bt bt-secondary flex-1" type="button">Abbrechen</button>
+          <button
+            class="bt bt-primary flex-1"
+            type="button"
             :disabled="!canSubmit || loading"
             @click="handleSubmit"
-            variant="primary"
-            class="flex-1"
           >
             <span v-if="loading">Speichern...</span>
             <span v-else>Änderungen speichern</span>
-          </DynButton>
+          </button>
         </div>
 
         <p v-if="error" class="text-red-500 mt-2" aria-live="polite">{{ error }}</p>
