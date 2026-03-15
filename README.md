@@ -1,27 +1,4 @@
-# dyn-challenge
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VS Code](https://code.visualstudio.com/) + [Vue (Official)](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Recommended Browser Setup
-
-- Chromium-based browsers (Chrome, Edge, Brave, etc.):
-  - [Vue.js devtools](https://chromewebstore.google.com/detail/vuejs-devtools/nhdogjmejiglipccpnnnanhbledajbpd)
-  - [Turn on Custom Object Formatter in Chrome DevTools](http://bit.ly/object-formatters)
-- Firefox:
-  - [Vue.js devtools](https://addons.mozilla.org/en-US/firefox/addon/vue-js-devtools/)
-  - [Turn on Custom Object Formatter in Firefox DevTools](https://fxdx.dev/firefox-devtools-custom-object-formatters/)
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
+# DYN Media - change password box
 
 ## Project Setup
 
@@ -46,3 +23,60 @@ npm run build
 ```sh
 npm run test:unit
 ```
+
+## Project Structure
+
+```sh
+src/
+ ├ __tests__/
+    ├ useInputPasswordToggle.spec.ts
+    ├ usePasswordChange.spec.ts
+ ├ assets/
+    ├ main.css
+    ├ button.css                  # initial file
+ ├ components/
+    ├ icons/                      # initial files
+    ├ DynButton.vue
+    ├ DynInput.vue                # initial file
+    ├ DynInputPasswordToggle.vue  # initial file
+    ├ DynTitle.vue
+    ├ PasswordBox.vue
+ ├ composables/
+    ├ useInputFocus.ts            # initial file
+    ├ useInputPasswordToggle.ts   # initial file
+    ├ usePasswordChange.ts
+ ├ App.vue
+ └ main.ts
+```
+
+## Key Decisions
+
+### 1. Separation of UI and business logic
+
+A usePasswordChange.ts composable was created to separate business logic from UI components.
+In addition, a simple mock file was added to simulate the password change request.
+
+### 2. Upgrading to Tailwind 4
+
+Tailwind v3 was upgraded to v4. The tailwind.config.cjs file was removed and the theme variables were moved to main.css.
+In DynInput.vue, lang="scss" was removed and replaced with @reference "@/assets/main.css" to make @apply work correctly.
+The button.scss file was renamed to button.css, and styles were updated to work without SCSS.
+
+### 3. Lean UI vs Inline Validation
+
+Two UX approaches were implemented:
+
+- Inline validation for the new password input.
+- Lean UI with "Save" for the current password and confirmation inputs.
+
+### 4. Mobiile adaptation
+
+The layout was adapted for mobile screens to ensure proper spacing and usability on smaller devices.
+
+### 5. Tests implementation
+
+Unit tests were implemented for:
+
+- the password validation function
+- the password change composable
+- the password visibility toggle
