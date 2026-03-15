@@ -57,6 +57,8 @@ function resetForm() {
   currentPassword.value = ''
   newPassword.value = ''
   confirmPassword.value = ''
+  currentError.value = ''
+  confirmError.value = ''
   step.value = 1
 }
 </script>
