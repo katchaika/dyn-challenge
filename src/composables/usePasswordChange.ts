@@ -46,7 +46,7 @@ export function usePasswordChange() {
       })
       const data = await res.json()
 
-      // waiting imitation
+      // sending imitation
       await new Promise((r) => setTimeout(r, 2000))
 
       success.value = data.success
@@ -54,7 +54,7 @@ export function usePasswordChange() {
     } catch (err: any) {
       error.value = err.message || 'Fehler beim Ändern des Passworts'
       success.value = false
-      trackEvent('password_change_submit', false, err.message || 'unknown_error')
+      trackEvent('password_change_submit', false, err?.message || 'unknown_error')
     } finally {
       loading.value = false
     }

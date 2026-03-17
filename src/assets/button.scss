@@ -1,0 +1,25 @@
+.bt {
+  @apply appearance-none outline-none ring-0 focus-visible:outline-none enabled:cursor-pointer disabled:opacity-20 px-2 rounded-sm;
+}
+
+.bt-primary {
+  @apply flex h-12 items-center justify-center bg-blue-active text-center font-bebas leading-none tracking-wider text-blue-midnight active:bg-blue-light enabled:hover:bg-blue-highlight enabled:focus:bg-blue-highlight disabled:bg-gray-73 disabled:text-gray-40;
+}
+
+.bt-secondary {
+  @apply flex h-12 items-center justify-center border border-blue-active bg-transparent text-center font-bebas leading-none tracking-wider text-blue-active enabled:hover:border-blue-highlight enabled:hover:text-blue-highlight enabled:focus:border-blue-highlight enabled:focus:text-blue-highlight  disabled:border-gray-73 disabled:text-gray-40 rounded-sm;
+}
+
+a {
+  &.bt-primary {
+    @apply hover:bg-blue-highlight focus:bg-blue-highlight active:bg-blue-highlight;
+  }
+
+  &.bt-secondary {
+    @apply hover:border-blue-highlight hover:text-blue-highlight focus:border-blue-highlight focus:text-blue-highlight active:border-blue-highlight;
+  }
+}
+
+.bt-small {
+  @apply h-8;
+}
