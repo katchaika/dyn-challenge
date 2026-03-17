@@ -59,8 +59,8 @@ In addition, a simple mock file was added to simulate the password change reques
 ### 2. Upgrading to Tailwind 4
 
 Tailwind v3 was upgraded to v4. The tailwind.config.cjs file was removed and the theme variables were moved to main.css.
-In DynInput.vue, lang="scss" was removed and replaced with @reference "@/assets/main.css" to make @apply work correctly.
-The button.scss file was renamed to button.css, and styles were updated to work without SCSS.
+In DynInput.vue was added @reference "@/assets/main.css" to make @apply work correctly.
+Installing postcss for using SCSS.
 
 ### 3. Lean UI vs Inline Validation
 
@@ -80,3 +80,7 @@ Unit tests were implemented for:
 - the password validation function
 - the password change composable
 - the password visibility toggle
+
+### 5. trackEvent functionality
+
+useTrackEvent was added to track success or fail scenarios
