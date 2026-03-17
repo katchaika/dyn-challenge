@@ -1,7 +1,7 @@
 <template>
   <button
     v-if="isVisible"
-    class="flex h-full w-full flex-col items-center justify-center text-white outline-none hover:text-blue-light focus:text-blue-light disabled:text-gray cursor-pointer"
+    class="flex h-full w-full flex-col items-center justify-center text-white outline-hidden hover:text-blue-light focus:text-blue-light disabled:text-gray cursor-pointer"
     :disabled="isDisabled"
     type="button"
     @click="toggle"

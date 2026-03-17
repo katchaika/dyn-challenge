@@ -61,6 +61,7 @@ In addition, a simple mock file was added to simulate the password change reques
 Tailwind v3 was upgraded to v4. The tailwind.config.cjs file was removed and the theme variables were moved to main.css.
 In DynInput.vue was added @reference "@/assets/main.css" to make @apply work correctly.
 Installing postcss for using SCSS.
+Changed some tags regarding to Tailwind 4. For example outline-none to outline-hidden, or space-4 to gap-4
 
 ### 3. Lean UI vs Inline Validation
 

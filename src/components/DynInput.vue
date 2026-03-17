@@ -4,7 +4,7 @@
       <input
         v-model="computedModelValue"
         v-bind="computedProps"
-        class="peer max-h-12 w-full appearance-none rounded-lg border bg-blue-xxx-24 px-4 pt-[15px] pb-3.5 leading-none outline-none placeholder:text-gray placeholder:opacity-0 placeholder:transition-opacity enabled:focus:ring-0 enabled:focus:placeholder:opacity-100"
+        class="peer max-h-12 w-full appearance-none rounded-lg border bg-blue-xxx-24 px-4 pt-[15px] pb-3.5 leading-none outline-hidden placeholder:text-gray placeholder:opacity-0 placeholder:transition-opacity enabled:focus:ring-0 enabled:focus:placeholder:opacity-100"
         :class="[
           invalid
             ? 'border-red-alert text-red-alert enabled:border-red-alert enabled:hover:border-red-alert enabled:hover:ring-1 enabled:hover:ring-red-alert enabled:focus:border-red-alert enabled:focus:ring-1 enabled:focus:ring-red-alert'

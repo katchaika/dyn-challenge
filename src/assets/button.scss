@@ -1,5 +1,5 @@
 .bt {
-  @apply appearance-none outline-none ring-0 focus-visible:outline-none enabled:cursor-pointer disabled:opacity-20 px-2 rounded-sm;
+  @apply appearance-none outline-hidden ring-0 focus-visible:outline-hidden enabled:cursor-pointer disabled:opacity-20 px-2 rounded-sm;
 }
 
 .bt-primary {

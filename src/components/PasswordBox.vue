@@ -70,7 +70,7 @@ function resetForm() {
 
 <template>
   <div class="flex justify-center items-center h-full w-full">
-    <div class="max-w-lg p-6 rounded space-y-4 bg-white/25 w-full sm:min-w-2xl text-white">
+    <div class="max-w-lg p-6 rounded-sm gap-y-4 bg-white/25 w-full sm:min-w-2xl text-white">
       <div v-if="step === 1">
         <DynTitle level="h2" class="mb-6">Passwort</DynTitle>
         <button @click="goToSecondStep" class="bt bt-primary w-20" type="button">Ändern</button>
@@ -78,7 +78,7 @@ function resetForm() {
 
       <div v-if="step === 2">
         <DynTitle level="h2" class="mb-4">Passwort ändern</DynTitle>
-        <div class="flex sm:space-x-2 flex-col sm:flex-row">
+        <div class="flex sm:gap-x-2 flex-col sm:flex-row">
           <DynInput
             v-model="currentPassword"
             label="Aktuelles Passwort"
@@ -94,7 +94,7 @@ function resetForm() {
             </template>
           </DynInput>
 
-          <div class="flex-1 mt-2 flex items-center" :disabled="true">
+          <div class="flex-1 mt-4" :disabled="true">
             <!-- my commponent -->
             <DynButton @click="console.log('Passwort vergessen')" variant="ghost"
               >Passwort vergessen</DynButton
@@ -102,7 +102,7 @@ function resetForm() {
           </div>
         </div>
 
-        <div class="flex mt-4 sm:space-x-2 flex-col sm:flex-row">
+        <div class="flex mt-4 sm:gap-2 flex-col sm:flex-row">
           <div class="flex-1">
             <DynInput
               v-model="newPassword"
@@ -152,7 +152,7 @@ function resetForm() {
           </div>
         </div>
 
-        <div class="flex justify-between items-center mt-6 space-x-2">
+        <div class="flex justify-between items-center mt-6 gap-x-2">
           <button @click="resetForm" class="bt bt-secondary flex-1" type="button">Abbrechen</button>
           <button
             class="bt bt-primary flex-1"
@@ -170,7 +170,7 @@ function resetForm() {
 
       <div v-if="step === 3">
         <DynTitle level="h2" class="mb-4">Passwort ändern</DynTitle>
-        <div class="flex space-x-4">
+        <div class="flex gap-4">
           <div>
             <IconMailing class="w-16 sm:w-18" />
           </div>

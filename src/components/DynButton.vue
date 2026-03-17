@@ -27,7 +27,7 @@ export default defineComponent({
   setup(props) {
     const classes = computed(() => {
       const base =
-        'inline-flex items-center justify-center rounded py-2 text-sm sm:text-md font-semibold transition focus:outline-none cursor-pointer font-bebas uppercase tracking-widest'
+        'inline-flex items-center justify-center rounded-sm py-2 text-sm sm:text-md font-semibold transition focus:outline-hidden cursor-pointer font-bebas uppercase tracking-widest'
 
       const variants = {
         primary:
